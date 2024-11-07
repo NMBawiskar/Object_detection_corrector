@@ -962,13 +962,13 @@ class MainWindow(QMainWindow, WindowMixin):
     def scroll_request(self, delta, orientation):
         units = - delta / (8 * 15)
         bar = self.scroll_bars[orientation]
-        bar.setValue(bar.value() + bar.singleStep() * units)
+        bar.setValue(int(bar.value() + bar.singleStep() * units))
 
     def set_zoom(self, value):
         self.actions.fitWidth.setChecked(False)
         self.actions.fitWindow.setChecked(False)
         self.zoom_mode = self.MANUAL_ZOOM
-        self.zoom_widget.setValue(value)
+        self.zoom_widget.setValue(int(value))
 
     def add_zoom(self, increment=10):
         self.set_zoom(self.zoom_widget.value() + increment)
@@ -1022,8 +1022,8 @@ class MainWindow(QMainWindow, WindowMixin):
         new_h_bar_value = h_bar.value() + move_x * d_h_bar_max
         new_v_bar_value = v_bar.value() + move_y * d_v_bar_max
 
-        h_bar.setValue(new_h_bar_value)
-        v_bar.setValue(new_v_bar_value)
+        h_bar.setValue(int(new_h_bar_value))
+        v_bar.setValue(int(new_v_bar_value))
 
     def set_fit_window(self, value=True):
         if value:
